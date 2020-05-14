@@ -3,27 +3,32 @@ using System.ComponentModel.DataAnnotations;
 
 namespace libraryapi
 {
-  public class Book
+  public class Movie
   {
     [Required]
     [MinLength(5)]
     public string Title { get; set; }
     [Required]
-    public string Author { get; set; }
+    [MaxLength(100)]
+    public string Description { get; set; }
     [Required]
-    [Range(1, 30)]
+    [MaxLength(10)]
+    public string Medium { get; set; }
+    [Required]
+    [Range(1, 7)]
     public int DaysBorrowed { get; set; }
     public string Id { get; private set; }
 
-    public Book()
+    public Movie()
     {
       Id = Guid.NewGuid().ToString();
     }
-    public Book(string title, string author, int daysBorrowed)
+    public Movie(string title, string description, string medium, int daysBorrowed)
     {
       Title = title;
-      Author = author;
+      Description = description;
       DaysBorrowed = daysBorrowed;
+      Medium = medium;
       Id = Guid.NewGuid().ToString();
     }
   }
